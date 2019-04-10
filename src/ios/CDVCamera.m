@@ -163,7 +163,7 @@ static NSString* toBase64(NSData* data) {
                  {
                      // Denied; show an alert
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"] message:NSLocalizedString(@"Access to the camera has been prohibited; please enable it in the Settings app to continue.", nil) preferredStyle:UIAlertControllerStyleAlert];
+                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"] message:NSLocalizedString(@"相机已被禁用，请在“设置”应用中启用它.", nil) preferredStyle:UIAlertControllerStyleAlert];
                          [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                              [weakSelf sendNoPermissionResult:command.callbackId];
                          }]];
@@ -279,7 +279,7 @@ static NSString* toBase64(NSData* data) {
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if([navigationController isKindOfClass:[UIImagePickerController class]]){
-        
+
         // If popoverWidth and popoverHeight are specified and are greater than 0, then set popover size, else use apple's default popoverSize
         NSDictionary* options = self.pickerController.pictureOptions.popoverOptions;
         if(options) {
@@ -290,8 +290,8 @@ static NSString* toBase64(NSData* data) {
                 [viewController setPreferredContentSize:CGSizeMake(popoverWidth,popoverHeight)];
             }
         }
-        
-        
+
+
         UIImagePickerController* cameraPicker = (UIImagePickerController*)navigationController;
 
         if(![cameraPicker.mediaTypes containsObject:(NSString*)kUTTypeImage]){
